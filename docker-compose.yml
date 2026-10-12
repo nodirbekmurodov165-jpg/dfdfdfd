@@ -1,0 +1,10 @@
+services:
+  telegram-ai-bot:
+    build: .
+    container_name: telegram-ai-bot
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
