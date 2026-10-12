@@ -1,5 +1,7 @@
 import asyncio
 import logging
+import socket
+import sys
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
@@ -12,6 +14,22 @@ from app.handlers import setup_routers
 from app.services.ai_service import AIService
 
 BASE_DIR = Path(__file__).resolve().parent
+SINGLE_INSTANCE_PORT = 48914
+
+
+def acquire_single_instance_lock() -> socket.socket | None:
+    """
+    Bir vaqtning o'zida ikkita bot nusxasi ishga tushib TelegramConflictError
+    bermasligi uchun lokal port orqali blokirovka (lock) oladi.
+    """
+    lock_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        lock_socket.bind(("127.0.0.1", SINGLE_INSTANCE_PORT))
+        lock_socket.listen(1)
+        return lock_socket
+    except OSError:
+        lock_socket.close()
+        return None
 
 
 def setup_logging() -> None:
@@ -52,6 +70,11 @@ async def set_bot_commands(bot: Bot) -> None:
 
 
 async def main() -> None:
+    lock_socket = acquire_single_instance_lock()
+    if lock_socket is None:
+        # Bot allaqachon boshqa jarayonda ishlayapti
+        sys.exit(0)
+
     setup_logging()
     logger = logging.getLogger(__name__)
 

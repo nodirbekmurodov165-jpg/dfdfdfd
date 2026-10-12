@@ -22,7 +22,7 @@ DEFAULT_SYSTEM_PROMPT = (
 @dataclass(frozen=True)
 class Config:
     bot_token: str
-    openai_api_key: str
+    openai_api_key: str | None
     openai_model: str
     openai_base_url: str | None
     max_context_messages: int
@@ -34,20 +34,16 @@ class Config:
 def load_config() -> Config:
     """Atrof-muhit o'zgaruvchilaridan (.env) sozlamalarni yuklaydi va tekshiradi."""
     bot_token = os.getenv("BOT_TOKEN", "").strip()
-    openai_api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    raw_api_key = os.getenv("OPENAI_API_KEY", "").strip()
     openai_model = os.getenv("OPENAI_MODEL", "gpt-4o-mini").strip() or "gpt-4o-mini"
     openai_base_url = os.getenv("OPENAI_BASE_URL", "").strip() or None
 
     if not bot_token or bot_token == "your_telegram_bot_token_here":
         raise ValueError("BOT_TOKEN topilmadi! .env fayliga Telegram bot tokeningizni kiriting.")
 
-    # Agar shaxsiy OPENAI_API_KEY kiritilmagan bo'lsa, OpenAI-mos bepul shlyuz orqali ishlaydi
-    if not openai_api_key or openai_api_key == "your_openai_api_key_here":
-        openai_api_key = "pollinations-openai-bridge"
-        if not openai_base_url:
-            openai_base_url = "https://text.pollinations.ai/openai"
-        if openai_model == "gpt-4o-mini":
-            openai_model = "openai"
+    openai_api_key: str | None = None
+    if raw_api_key and raw_api_key != "your_openai_api_key_here":
+        openai_api_key = raw_api_key
 
     try:
         max_context_messages = int(os.getenv("MAX_CONTEXT_MESSAGES", "20"))
