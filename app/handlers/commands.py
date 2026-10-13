@@ -25,19 +25,17 @@ async def cmd_start(message: Message, db: Database) -> None:
 
     welcome_text = (
         f"👋 Assalomu alaykum, <b>{first_name}</b>!\n\n"
-        "Men 24/7 ishlaydigan <b>AI suhbatdosh va yordamchi botman</b> (ChatGPT kabi).\n\n"
-        "✨ <b>Imkoniyatlarim:</b>\n"
-        "• 💬 Istalgan mavzuda tabiiy suhbatlashish\n"
-        "• ✍️ Maqola, post, insho va matnlar yozish hamda tahrirlash\n"
-        "• 🌐 O'zbek, rus, ingliz va boshqa tillarda erkin muloqot hamda tarjima\n"
-        "• 💻 Dasturlash kodlarini yozish va xatolarni topish\n"
-        "• 🧮 Matematika va mantiqiy masalalarni yechish\n"
-        "• 💡 Yangi g'oyalar va rejalar ishlab chiqish\n\n"
+        "Xush kelibsiz! Men <b>Jadidlar bilan tanishtiruvchi AI botman</b> (@Jadidlar_bilan_tanishtiruvchibot).\n\n"
+        "📚 <b>Men orqali bilib olishingiz mumkin:</b>\n"
+        "• 📜 Turkiston jadidlari (Behbudiy, Avloniy, Fitrat, Cho'lpon, Qodiriy va b.) hayoti va merosi\n"
+        "• 📖 Jadidlarning nodir asarlari, romanlari, she'rlari va maqolalari\n"
+        "• 🏫 Yangi usul (usuli jadid) maktablari, teatr va milliy matbuot tarixi\n"
+        "• 💡 Ularning ilm-ma'rifat va milliy ozodlik haqidagi ibratli fikrlari\n\n"
         "📌 <b>Foydali buyruqlar:</b>\n"
         "/clear — Suhbat tarixini tozalash (yangi mavzu boshlash)\n"
-        "/help — Yordam va qo'llanma\n"
+        "/help — Yordam va savol namunalari\n"
         "/about — Bot haqida ma'lumot\n\n"
-        "👇 <i>Menga savolingizni yoki topshirig'ingizni oddiy xabar sifatida yozib yuboring!</i>"
+        "👇 <i>Istalgan savolingizni yozing: masalan, 'Mahmudxo\\'ja Behbudiy kim bo\\'lgan?' yoki 'Jadidlar qanday gazetalarni chiqargan?'</i>"
     )
     await message.answer(welcome_text, parse_mode=ParseMode.HTML)
 
@@ -46,18 +44,18 @@ async def cmd_start(message: Message, db: Database) -> None:
 async def cmd_help(message: Message) -> None:
     """/help buyrug'i: botdan foydalanish bo'yicha yordam."""
     help_text = (
-        "📖 <b>Yordam va foydalanish qo'llanmasi</b>\n\n"
-        "Bot bilan xuddi oddiy suhbatdosh yoki ChatGPT bilan gaplashgandek muloqot qilishingiz mumkin:\n\n"
-        "1️⃣ <b>Savol bering:</b> Istalgan tilda savol yoki topshiriq yuboring.\n"
-        "2️⃣ <b>Kontekstni davom ettiring:</b> Bot oldingi xabarlaringizni eslab qoladi, "
-        "shuning uchun suhbatni bemalol davom ettirishingiz mumkin.\n"
-        "3️⃣ <b>Yangi mavzu:</b> Agar suhbat mavzusini butunlay o'zgartirmoqchi bo'lsangiz, "
-        "/clear buyrug'ini bering.\n\n"
+        "📖 <b>Botdan foydalanish bo'yicha qo'llanma</b>\n\n"
+        "Menga jadidlar hayoti, asarlari va o'sha davr tarixi haqida istalgan shaklda savol berishingiz mumkin.\n\n"
+        "💡 <b>Savol namunalari:</b>\n"
+        "• <i>\"Jadidchilik harakati qachon va qanday boshlangan?\"</i>\n"
+        "• <i>\"Abdulla Qodiriyning 'O'tkan kunlar' romani haqida ma'lumot ber\"</i>\n"
+        "• <i>\"Abdulhamid Cho'lponning eng mashhur she'rlari qaysilar?\"</i>\n"
+        "• <i>\"Munavvarqori Abdurashidxonov qanday maktablar ochgan?\"</i>\n\n"
         "🛠 <b>Mavjud buyruqlar:</b>\n"
         "• /start — Botni qayta ishga tushirish\n"
-        "• /help — Ushbu yordam oynasini ko'rsatish\n"
+        "• /help — Ushbu yordam menyusi\n"
         "• /clear — Joriy suhbat tarixini tozalash\n"
-        "• /about — Bot va texnologiyalar haqida ma'lumot"
+        "• /about — Bot haqida batafsil ma'lumot"
     )
     await message.answer(help_text, parse_mode=ParseMode.HTML)
 
@@ -77,7 +75,7 @@ async def cmd_clear(message: Message, db: Database) -> None:
         )
     else:
         await message.answer(
-            "ℹ️ Suhbat tarixingiz allaqachon bo'sh. Menga istalgan savolingizni yozishingiz mumkin!",
+            "ℹ️ Suhbat tarixingiz allaqachon bo'sh. Menga jadidlar haqida istalgan savolingizni berishingiz mumkin!",
             parse_mode=ParseMode.HTML,
         )
 
@@ -86,14 +84,14 @@ async def cmd_clear(message: Message, db: Database) -> None:
 async def cmd_about(message: Message, config: Config) -> None:
     """/about buyrug'i: bot haqida ma'lumot."""
     about_text = (
-        "🤖 <b>Telegram AI Chatbot — 24/7</b>\n\n"
-        "Ushbu bot sun'iy intellekt (OpenAI) yordamida foydalanuvchilarga "
-        "kun-u tun (24/7) tezkor va aqlli yordam berish uchun yaratilgan.\n\n"
+        "📚 <b>Jadidlar bilan tanishtiruvchi bot</b> (@Jadidlar_bilan_tanishtiruvchibot)\n\n"
+        "Ushbu bot milliy uyg'onish va ma'rifatparvarlik yetakchilari — jadid bobolarimizning "
+        "bebaho merosini yoshlar va barcha qiziquvchilarga sun'iy intellekt orqali interaktiv "
+        "ravishda tanishtirish maqsadida yaratilgan.\n\n"
         "⚙️ <b>Texnik xususiyatlar:</b>\n"
         f"• <b>AI Model:</b> <code>{config.openai_model}</code>\n"
-        "• <b>Platforma:</b> Python 3.12+ va aiogram 3.x\n"
-        "• <b>Xotira:</b> Har bir foydalanuvchi uchun alohida SQLite suhbat konteksti\n"
-        "• <b>Tillar:</b> O'zbek, Rus, Ingliz va boshqa tillar\n\n"
+        "• <b>Platforma:</b> Python 3.12+, Aiogram 3.x\n"
+        "• <b>Ishlash tartibi:</b> 24/7 uzluksiz rejim va xotira konteksti\n\n"
         "💡 Suhbat tarixini yangilash uchun /clear buyrug'idan foydalaning."
     )
     await message.answer(about_text, parse_mode=ParseMode.HTML)

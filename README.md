@@ -1,13 +1,13 @@
-# 🤖 Telegram AI Chatbot — 24/7
+# 📚 Jadidlar bilan tanishtiruvchi AI Bot (@Jadidlar_bilan_tanishtiruvchibot)
 
-ChatGPT kabi tabiiy muloqot qiluvchi, har bir foydalanuvchi uchun suhbat kontekstini eslab qoluvchi va 24/7 ishlashga mo‘ljallangan Telegram AI bot.
+Turkiston jadid ma'rifatparvarlari (Behbudiy, Avloniy, Fitrat, Cho'lpon, Qodiriy va b.) hayoti, ijodi, asarlari va milliy uyg'onish merosini sun'iy intellekt orqali 24/7 rejimda tanishtiruvchi Telegram AI bot.
 
 ## ✨ Asosiy imkoniyatlar
-- 💬 **Tabiiy suhbat**: O‘zbek, rus, ingliz va boshqa tillarda erkin muloqot.
+- 📜 **Jadidlar ensiklopediyasi**: Jadidchilik harakati, usuli jadid maktablari, teatr va matbuot haqida batafsil ma'lumotlar.
+- 💬 **Tabiiy va boy muloqot**: O‘zbek, rus, ingliz va boshqa tillarda erkin va hurmat bilan suhbatlashish.
 - 🧠 **Kontekst xotirasi**: Har bir foydalanuvchining suhbat tarixi SQLite bazasida alohida saqlanadi.
-- 📏 **Aqlli cheklov boshqaruvi**: Juda uzun suhbatlarda kontekst hajmini avtomatik boshqaradi va Telegramning 4096 belgilik chekloviga mos ravishda uzun javoblarni mantiqiy bo‘laklarga bo‘lib yuboradi.
-- 🛠 **Ko‘p qirrali yordamchi**: Matn yozish, tahrirlash, tarjima qilish, dasturlash kodlari yozish, masalalar yechish va g‘oyalar berish.
-- 🛡 **Barqaror 24/7 ishlash**: Asinxron arxitektura (`aiogram 3.x` + `aiosqlite` + `AsyncOpenAI`), xatolarni ushlash va `logs/bot.log` ga yozib borish.
+- 📏 **Aqlli xabar boshqaruvi**: Telegram cheklovlariga mos uzun matnlarni bo'lib yuborish.
+- 🛡 **Barqaror 24/7 ishlash**: Asinxron arxitektura (`aiogram 3.x` + `aiosqlite`), avtomatik qayta ulanish va fonda mustaqil ishlash.
 
 ---
 
